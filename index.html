@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szorzótábla</title>
+</head>
+<body>
+    
+</body>
+<script>
+        const cim = document.createElement("h1");
+        const cimSzov = document.createTextNode("szorzótábla")
+        cim.appendChild(cimSzov);
+        document.body.appendChild(cim);
+
+        const tabla = document.createElement("table");
+        const elso = document.createElement("tr");
+
+        for (let i = 0; i <= 10; i++) {
+            const cella = document.createElement("th");
+            const cellaSzoveg = document.createTextNode(i)
+            cella.appendChild(cellaSzoveg);
+            elso.appendChild(cella)
+        }
+
+        tabla.appendChild(elso);
+        document.body.appendChild(tabla);
+
+        for (let index = 1; index <= 10; index++) {
+            const sor = document.createElement("tr");
+            const cella = document.createElement("th");
+            const cellaSzoveg = document.createTextNode(index);
+
+            cella.appendChild(cellaSzoveg);
+            sor.appendChild(cella);
+            for (let j = 1; j <= 10; j++) {
+                const cella = document.createElement("td");
+                const cellaSzoveg = document.createTextNode(index * j);
+                cella.appendChild(cellaSzoveg);
+                sor.appendChild(cella);
+            }
+
+            sor.addEventListener("mouseover", () => {
+                sor.style.fontWeight = "bold";
+            });
+            tabla.appendChild(sor);
+
+            sor.addEventListener("mouseout", () => {
+                sor.style.fontWeight = "normal";
+            });
+            
+        }
+
+        document.body.appendChild(tabla);
+
+        tabla.style.border = "2px solid black";
+        tabla.style.borderCollapse = "collapse";
+
+        const cellak = document.getElementsByTagName("td");
+
+        let egyik = "#520F07";
+        let masik = "#08B6D1";
+
+        for (let index = 0; index < cellak.length; index++) {
+            if (index % 2 === 0) {
+                cellak[index].style.cssText = "background-color: " + egyik + "; color: " + masik + ";";
+            } 
+            else {
+                cellak[index].style.cssText = "background-color: " + masik +"; color: " + egyik + ";";
+            }
+
+            
+
+            if(index % 10 === 9)
+            {
+                let temp = egyik;
+                egyik = masik;
+                masik = temp;
+            }
+        }
+
+    </script>
+</html>
